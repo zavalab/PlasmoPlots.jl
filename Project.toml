@@ -1,0 +1,13 @@
+name = "PlasmoPlots"
+uuid = "a21664a3-f668-4e98-8a13-7892286ec16a"
+authors = ["Jordan Jalving <jhjalving@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
