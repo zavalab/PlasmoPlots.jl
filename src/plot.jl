@@ -148,8 +148,9 @@ function Plots.plot(graph::OptiGraph,subgraphs::Vector{OptiGraph}; node_labels =
 
 
     #LAYOUT
-    hypergraph,hyper_map = gethypergraph(graph)
-    clique_graph,clique_map = clique_expansion(hypergraph)
+    # hypergraph,hyper_map = gethypergraph(graph)
+    # clique_graph,clique_map = clique_expansion(hypergraph)
+    clique_graph,clique_map = Plasmo.clique_graph(graph)
     lgraph = clique_graph#.lightgraph
 
 

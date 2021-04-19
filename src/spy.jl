@@ -92,7 +92,9 @@ function Plots.spy(graph::OptiGraph;node_labels = false,labelsize = 24,subgraph_
     link_cols = []
     for link in getlinkconstraints(graph)
         #row -= 1
-        vars = keys(link.func.terms)
+
+        linkcon = constraint_object(link)
+        vars = keys(linkcon.func.terms)
         for var in vars
             node = getnode(var)
 
@@ -136,7 +138,8 @@ function _plot_subgraphs!(graph::OptiGraph,plt,node_col_ranges,row_start_graph;n
         for link in getlinkconstraints(subgraph)
             #row -= 1
             #nodes = getnodes(link)
-            vars = keys(link.func.terms)
+            linkcon = constraint_object(link)
+            vars = keys(linkcon.func.terms)
             for var in vars
                 node = getnode(var)
                 col_start,col_end = node_col_ranges[node]
@@ -248,7 +251,8 @@ function Plots.spy(graph::OptiGraph,subgraphs::Vector{OptiGraph};node_labels = f
         row = row_start_graph
         for link in getlinkconstraints(subgraph)
             row -= 1
-            vars = keys(link.func.terms)
+            linkcon = constraint_object(link)
+            vars = keys(linkcon.func.terms)
             for var in vars
                 node = getnode(var)
                 col_start,col_end = node_col_ranges[node]
