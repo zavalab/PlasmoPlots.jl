@@ -40,8 +40,8 @@ function Plots.plot(graph::OptiGraph; node_labels = false, subgraph_colors = fal
         markercolor = []
         n_graphs = length(graph.subgraphs) + 1
         cols = Colors.distinguishable_colors(n_graphs)
-        if cols[1] == colorant"black"
-            cols[1] = colorant"grey"
+        if cols[1] == Colors.parse(Colorant,"black")
+            cols[1] = Colors.parse(Colorant,"grey")
         end
         for node in getnodes(graph)
             push!(markercolor,cols[1])
@@ -56,16 +56,17 @@ function Plots.plot(graph::OptiGraph; node_labels = false, subgraph_colors = fal
 
     elseif node_colors
         cols = Colors.distinguishable_colors(length(all_nodes(graph)) + 1)
-        if cols[1] == colorant"black"
-            cols[1] = colorant"grey"
+        if cols[1] == Colors.parse(Colorant,"black")
+            cols[1] = Colors.parse(Colorant,"grey")
         end
         markercolor = cols[2:end]
     else
         markercolor = markercolor
     end
 
-    hypergraph,hyper_map = hyper_graph(graph)
-    clique_graph,clique_map = clique_expansion(hypergraph)
+    #hypergraph,hyper_map = hyper_graph(graph)
+    # clique_graph,clique_map = clique_expansion(hypergraph)
+    clique_graph,clique_map = Plasmo.clique_graph(graph)
     lgraph = clique_graph#.lightgraph
 
     startpositions = Array{Point{2,Float32},1}()
@@ -110,8 +111,8 @@ function Plots.plot(graph::OptiGraph,subgraphs::Vector{OptiGraph}; node_labels =
     markersizes = []
     n_graphs = length(subgraphs)
     cols = Colors.distinguishable_colors(n_graphs)
-    if cols[1] == colorant"black"
-        cols[1] = colorant"grey"
+    if cols[1] == Colors.parse(Colorant,"black")
+        cols[1] = Colors.parse(Colorant,"grey")
     end
 
     #subgraph_colors = Dict()
@@ -140,7 +141,7 @@ function Plots.plot(graph::OptiGraph,subgraphs::Vector{OptiGraph}; node_labels =
                 push!(markersizes,markersize)
             end
         else
-            push!(markercolors,colorant"grey")
+            push!(markercolors,Colors.parse(Colorant,"grey"))
             push!(markersizes,markersize)
         end
     end

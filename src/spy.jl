@@ -16,18 +16,18 @@ function Plots.spy(graph::OptiGraph;node_labels = false,labelsize = 24,subgraph_
     n_graphs = length(graph.subgraphs)
     if subgraph_colors
         cols = Colors.distinguishable_colors(n_graphs + 1)
-        if cols[1] == colorant"black"
-            cols[1] = colorant"grey"
+        if cols[1] == Colors.colorant"black"
+            cols[1] = Colors.colorant"grey"
         end
         colors = cols[2:end]
     else
-        colors = [colorant"grey" for _= 1:n_graphs]
+        colors = [Colors.colorant"grey" for _= 1:n_graphs]
     end
 
     if node_colors
         cols = Colors.distinguishable_colors(length(all_nodes(graph)) + 1)
-        if cols[1] == colorant"black"
-            cols[1] = colorant"grey"
+        if cols[1] == Colors.parse(Colorant,"black")
+            cols[1] = Colors.parse(Colorant,"grey")
         end
         node_cols = cols[2:end]
     end
@@ -121,7 +121,7 @@ end
 
 function _plot_subgraphs!(graph::OptiGraph,plt,node_col_ranges,row_start_graph;node_labels = false,labelsize = 24,colors = nothing,markersize = 1)
     if colors == nothing
-        colors = [colorant"grey" for _= 1:length(graph.subgraphs)]
+        colors = [Colors.parse(Colorant,"grey") for _= 1:length(graph.subgraphs)]
     end
 
 
@@ -191,12 +191,12 @@ function Plots.spy(graph::OptiGraph,subgraphs::Vector{OptiGraph};node_labels = f
     n_graphs = length(subgraphs)
     if subgraph_colors
         cols = Colors.distinguishable_colors(n_graphs + 1)
-        if cols[1] == colorant"black"
-            cols[1] = colorant"grey"
+        if cols[1] == Colors.parse(Colorant,"black")
+            cols[1] = Colors.parse(Colorant,"grey")
         end
         colors = cols[2:end]
     else
-        colors = [colorant"grey" for _= 1:n_graphs]
+        colors = [Colors.parse(Colorant,"grey") for _= 1:n_graphs]
     end
 
     #Plot limits
