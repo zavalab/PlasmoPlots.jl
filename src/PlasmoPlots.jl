@@ -1,21 +1,17 @@
-
 module PlasmoPlots
 
-#Graph Layout functions
-#using ColorTypes
 using Statistics
 using Plasmo
 using Plots
-using NetworkLayout.SFDP
-#using GeometryTypes:Point2f0,Point
+using NetworkLayout
 using GeometryBasics:Point2f0,Point
 using Colors
 using LightGraphs
 
-export plot, spy
+export plot, spy, layout_plot, matrix_plot
 
-include("plot.jl")
+include("layout_plot.jl")
 
-include("spy.jl")
+include("matrix_plot.jl")
 
 end

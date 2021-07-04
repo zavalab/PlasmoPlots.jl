@@ -31,7 +31,15 @@ Plot a graph layout of the optigraph `graph`. The following keyword arguments ca
     * `linewidth`: linewidth to use for each edge.  Defaults to the above option.
     * `linealpha`: linealpha to use for each edge. Default to the above option.
 """
-function Plots.plot(graph::OptiGraph; node_labels = false, subgraph_colors = false, node_colors = false, linewidth = 2.0, linealpha = 1.0, markersize = 30,labelsize = 20, markercolor = :grey,
+function layout_plot(graph::OptiGraph;
+    node_labels = false,
+    subgraph_colors = false,
+    node_colors = false,
+    linewidth = 2.0,
+    linealpha = 1.0,
+    markersize = 30,
+    labelsize = 20,
+    markercolor = :grey,
     layout_options = Dict(:tol => 0.01, :C => 2, :K => 4, :iterations => 2),
     plt_options = Dict(:legend => false,:framestyle => :box,:grid => false,:size => (800,800),:axis => nothing),
     line_options = Dict(:linecolor => :blue,:linewidth => linewidth,:linealpha => linealpha))
@@ -67,14 +75,15 @@ function Plots.plot(graph::OptiGraph; node_labels = false, subgraph_colors = fal
     #hypergraph,hyper_map = hyper_graph(graph)
     # clique_graph,clique_map = clique_expansion(hypergraph)
     clique_graph,clique_map = Plasmo.clique_graph(graph)
-    lgraph = clique_graph#.lightgraph
+    lgraph = clique_graph.graph
 
     startpositions = Array{Point{2,Float32},1}()
     for i = 1:LightGraphs.nv(lgraph)
         push!(startpositions,Point(rand(),rand()))
     end
     mat = LightGraphs.adjacency_matrix(lgraph)
-    positions = SFDP.layout(mat,Point2f0,startpositions = startpositions;layout_options...)
+    # positions = SFDP.layout(mat,Point2f0,startpositions = startpositions;layout_options...)
+    positions = NetworkLayout.sfdp(mat,initialpos = startpositions;layout_options...)
 
     #marker colors should be based on subgraphs
     scat_plt = Plots.scatter(positions;markersize = markersize,markercolor = markercolor,plt_options...);
@@ -95,16 +104,19 @@ function Plots.plot(graph::OptiGraph; node_labels = false, subgraph_colors = fal
     return scat_plt
 end
 
-
-
-
 #Overlap plots
-function Plots.plot(graph::OptiGraph,subgraphs::Vector{OptiGraph}; node_labels = false,linewidth = 2.0, linealpha = 1.0,markersize = 30,labelsize = 20, markercolor = :grey,
+function layout_plot(graph::OptiGraph,subgraphs::Vector{OptiGraph};
+    node_labels = false,
+    linewidth = 2.0,
+    linealpha = 1.0,
+    markersize = 30,
+    labelsize = 20,
+    markercolor = :grey,
     layout_options = Dict(:tol => 0.01,:C => 2, :K => 4, :iterations => 2), plt_options = Dict(:legend => false,:framestyle => :box,:grid => false,
-    :size => (800,800),:axis => nothing),line_options = Dict(:linecolor => :blue,:linewidth => linewidth,:linealpha => linealpha))
+    :size => (800,800),:axis => nothing),
+    line_options = Dict(:linecolor => :blue,:linewidth => linewidth,:linealpha => linealpha))
 
     nodes = all_nodes(graph)
-
 
     #COLORS
     markercolors = []
@@ -159,7 +171,8 @@ function Plots.plot(graph::OptiGraph,subgraphs::Vector{OptiGraph}; node_labels =
         push!(startpositions,Point(rand(),rand()))
     end
     mat = LightGraphs.adjacency_matrix(lgraph)
-    positions = SFDP.layout(mat,Point2f0,startpositions = startpositions;layout_options...)
+    # positions = SFDP.layout(mat,Point2f0,startpositions = startpositions;layout_options...)
+    positions = NetworkLayout.sfdp(mat,initialpos = startpositions;layout_options...)
 
     #marker colors should be based on subgraphs
     scat_plt = Plots.scatter(positions;markersize = markersizes,markercolor = markercolors,plt_options...);
@@ -179,3 +192,6 @@ function Plots.plot(graph::OptiGraph,subgraphs::Vector{OptiGraph}; node_labels =
 
     return scat_plt
 end
+
+Plots.plot(graph::OptiGraph;kwargs...) = layout_plot(graph;kwargs...)
+Plots.plot(graph::OptiGraph,subgraphs::Vector{OptiGraph};kwargs...) = layout_plot(graph,subgraphs;kwargs...)

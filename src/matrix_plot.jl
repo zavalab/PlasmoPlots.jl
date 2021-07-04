@@ -1,3 +1,4 @@
+#Functions to plot matrix structure of optigraphs
 rectangle(w, h, x, y) = Plots.Shape(x .+ [0,w,w,0], y .+ [0,0,h,h])
 
 """
@@ -11,7 +12,7 @@ Plot a matrix visualization of the optigraph: `graph`. The following keyword arg
 * `node_colors = false`: whether to color nodes.  Only active if `subgraph_colors = false`.
 * `markersize = 1`: Size of the linking constraints in the matrix representation.
 """
-function Plots.spy(graph::OptiGraph;node_labels = false,labelsize = 24,subgraph_colors = false,node_colors = false,markersize = 1)
+function matrix_plot(graph::OptiGraph;node_labels = false,labelsize = 24,subgraph_colors = false,node_colors = false,markersize = 1)
 
     n_graphs = length(graph.subgraphs)
     if subgraph_colors
@@ -51,7 +52,7 @@ function Plots.spy(graph::OptiGraph;node_labels = false,labelsize = 24,subgraph_
     guidefontsize = 24,tickfontsize = 18,grid = false,yticks = yticks)
 
     #plot top level nodes, then start going down subgraphs
-    n_link_constraints = num_linkconstraints(graph)  #local links
+    n_link_constraints = num_link_constraints(graph)  #local links
     col = 0
     node_indices = Dict()
     node_col_ranges = Dict()
@@ -189,7 +190,7 @@ function _plot_subgraphs!(graph::OptiGraph,plt,node_col_ranges,row_start_graph;n
 end
 
 #Overlap spy
-function Plots.spy(graph::OptiGraph,subgraphs::Vector{OptiGraph};node_labels = false,labelsize = 24,subgraph_colors = true)
+function matrix_plot(graph::OptiGraph,subgraphs::Vector{OptiGraph};node_labels = false,labelsize = 24,subgraph_colors = true)
 
     n_graphs = length(subgraphs)
     if subgraph_colors
@@ -300,3 +301,6 @@ function Plots.spy(graph::OptiGraph,subgraphs::Vector{OptiGraph};node_labels = f
 
     return plt
 end
+
+Plots.spy(graph::OptiGraph;kwargs...) = matrix_plot(graph;kwargs...)
+Plots.spy(graph::OptiGraph,subgraphs::Vector{OptiGraph};kwargs...) = matrix_plot(graph,subgraphs;kwargs...)
