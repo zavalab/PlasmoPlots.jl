@@ -58,7 +58,7 @@ node_labels = true,
 markersize = 30);
 ```
 
-<img src="assets/simple_plot_layout.png" width="10" height="10">
+<img src="assets/simple_plot_layout.png" width="250" height="250">
 
 <!-- ![](assets/simple_plot_layout.png =100x100) -->
 
