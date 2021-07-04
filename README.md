@@ -58,7 +58,11 @@ node_labels = true,
 markersize = 30);
 ```
 
-| ![][layout1-url]     | ![][matrix1-url]     |
+<img src="assets/simple_plot_layout.png" width="10" height="10">
+
+<!-- ![](assets/simple_plot_layout.png =100x100) -->
+
+<!-- | ![][layout1-url]     | ![][matrix1-url]     | -->
 
 ### Plotting an OptiGraph with Subgraphs
 This example builds up an optigraph that contains subgraphs and shows the resulting plot.
@@ -169,5 +173,5 @@ node_labels = true,
 subgraph_colors = true,
 markersize = 16);
 ```
-[layout1-url]: assets/simple_plot_layout.png
+<!-- [layout1-url]: assets/simple_plot_layout.png =250x250 -->
 [matrix1-url]: assets/simple_matrix_layout.png
