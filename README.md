@@ -3,11 +3,15 @@
 # PlasmoPlots
 
 ## Overview
-`PlasmoPlots` provides specialized functions to plot `OptiGraph` optimization models from [Plasmo.jl](https://zavalab.github.io/Plasmo.jl).
-The package uses [Plots.jl](https://github.com/JuliaPlots/Plots.jl) and consequently supports different plotting backends.  This package also uses the SFDP algorthm from [NetworkLayout.jl](https://github.com/JuliaGraphs/NetworkLayout.jl)
-to visualize graph structures.
+PlasmoPlots.jl provides specialized functions to plot `OptiGraph` optimization models created with [Plasmo.jl](https://zavalab.github.io/Plasmo.jl).
+The package uses [Plots.jl](https://github.com/JuliaPlots/Plots.jl) and consequently supports its different plotting backends.
+
+Currently, the package provides two functions to visualize optigraphs.  These are:
+- `layout_plot(::Plasmo.OptiGraph)`: Plots the node-link diagram for an optigraph. Uses the SFDP algorthm from [NetworkLayout.jl](https://github.com/JuliaGraphs/NetworkLayout.jl) to get node positions. This is also equivalent to `Plots.plot(::OptiGraph)`.
+- `matrix_plot(::Plasmo.OptiGraph)`: Plots the matrix structure (block structure) of an optigraph.  This equivalent to `Plots.spy(::OptiGraph)`.
 
 ## Installation
+PlasmoPlots.jl can be installed with following command using the Julia package manager:
 
 ```julia
 pkg> add https://github.com/jalving/PlasmoPlots.jl.git
