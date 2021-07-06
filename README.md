@@ -8,7 +8,7 @@ The package uses [Plots.jl](https://github.com/JuliaPlots/Plots.jl) and conseque
 
 Currently, the package provides two functions to visualize optigraphs.  These are:
 - `layout_plot(::Plasmo.OptiGraph)`: Plots the node-link diagram for an optigraph. Uses the SFDP algorthm from [NetworkLayout.jl](https://github.com/JuliaGraphs/NetworkLayout.jl) to get node positions. This is also equivalent to `Plots.plot(::OptiGraph)`.
-- `matrix_plot(::Plasmo.OptiGraph)`: Plots the matrix structure (block structure) of an optigraph.  This equivalent to `Plots.spy(::OptiGraph)`.
+- `matrix_plot(::Plasmo.OptiGraph)`: Plots the matrix structure (block structure) of an optigraph.  This is equivalent to `Plots.spy(::OptiGraph)`.
 
 ## Installation
 PlasmoPlots.jl can be installed with following command using the Julia package manager:
