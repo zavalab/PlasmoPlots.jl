@@ -2,7 +2,7 @@
 rectangle(w, h, x, y) = Plots.Shape(x .+ [0,w,w,0], y .+ [0,0,h,h])
 
 """
-    Plots.spy(graph::OptiGraph;node_labels = false,labelsize = 24,subgraph_colors = false,node_colors = false,markersize = 1)
+    PlasmoPlots.matrix_plot(graph::OptiGraph;node_labels = false,labelsize = 24,subgraph_colors = false,node_colors = false,markersize = 1)
 
 Plot a matrix visualization of the optigraph: `graph`. The following keyword arguments can be provided to customize the matrix visual.
 
