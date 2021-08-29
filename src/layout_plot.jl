@@ -163,7 +163,7 @@ function layout_plot(graph::OptiGraph,subgraphs::Vector{OptiGraph};
     # hypergraph,hyper_map = gethypergraph(graph)
     # clique_graph,clique_map = clique_expansion(hypergraph)
     clique_graph,clique_map = Plasmo.clique_graph(graph)
-    lgraph = clique_graph#.lightgraph
+    lgraph = clique_graph.graph
 
 
     startpositions = Array{Point{2,Float32},1}()
