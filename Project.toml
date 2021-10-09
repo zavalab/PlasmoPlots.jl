@@ -15,11 +15,12 @@ Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
 Colors = "0.12"
+GR = "0.61"
 GeometryBasics = "0.3"
 LightGraphs = "1"
 NetworkLayout = "0.3, 0.4"
-Plots = "1"
 Plasmo = "0.4"
+Plots = "1"
 julia = "1"
 
 [extras]
