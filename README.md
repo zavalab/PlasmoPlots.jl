@@ -177,3 +177,23 @@ subgraph_colors = true,
 markersize = 16);
 ```
 <img src="assets/subgraph_plot_layout.png" width="250" height="250">  <img src="assets/subgraph_matrix_layout.png" width="250" height="250">
+
+## Citing
+If you use `PlasmoPlots.jl` in your work, please cite:
+
+Jordan Jalving, Sungho Shin, and Victor M. Zavala. "A graph-based modeling abstraction for optimization: concepts and implementation in Plasmo.jl." *Mathematical Programming Computation* 14, no. 4 (2022): 699-747. https://doi.org/10.1007/s12532-022-00223-3
+
+Preprint: https://arxiv.org/abs/2006.05378
+
+```bibtex
+@article{jalving2022graph,
+  title   = {{A graph-based modeling abstraction for optimization: concepts and implementation in Plasmo.jl}},
+  author  = {Jalving, Jordan and Shin, Sungho and Zavala, Victor M.},
+  journal = {Mathematical Programming Computation},
+  volume  = {14},
+  number  = {4},
+  pages   = {699--747},
+  year    = {2022},
+  doi     = {10.1007/s12532-022-00223-3}
+}
+```
